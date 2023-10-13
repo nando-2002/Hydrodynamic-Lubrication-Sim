@@ -47,16 +47,9 @@ mu = 10**(-3) #Pa s
 U = 20 #m/s
 
 #solution 
-for b in range(2000):
-    for j in range(1, nx - 1):
-        p_new[j] = (-mu*U*(dx**2)/(h(j))) + (p_old[j-1] + p_old[j+1])/2
+   
+for b in range(5000):
+    p_new[1:nx - 1] = (-mu*U*(dx**2)/(h(np.arange(1,nx-1)))) + (p_old[:-2] + p_old[2:])/2
     p_old = p_new
-""" 
-    if (b%100 == 0):
-        if (b > 1800):
-            visualize("Position along the bearing", "Pressure", p_new, "r-")
-        else:
-            visualize("Position along the bearing", "Pressure", p_new, "b-")  
-"""
 
 visualize("Position along the bearing", "Pressure", p_new, "r-")

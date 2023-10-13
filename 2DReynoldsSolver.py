@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 #init space
-nx = 100
-nz = 100
+nx = 10
+nz = 10
 
 xmax = 1
 zmax = 1
@@ -43,10 +43,11 @@ def dh3dz(i):
 mu = 10**(-3)#Pa s
 U = 20#m/s
 
-for a in range(1000):
+for a in range(5000):
     for u in range(1, nx - 1):
         for v in range(1, nz - 1):
-            p_new[u,v] = (1/((-2/(6*mu*U))*((dh3dx(u)/dx) + (dh3dz(v)/dz)))*(dhdx(u) - (1/(6*mu*u))*((dh3dx(u)*(p_old[u+1,v]+p_old[u-1,v]))+(dh3dz(v)*(p_old[u,v+1]+p_old[u,v-1])))))
+            print(u, v, a)
+            
     p_old = p_new
     
 fig, ax = plt.subplots(subplot_kw = {"projection":"3d"})
