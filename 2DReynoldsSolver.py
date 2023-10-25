@@ -28,31 +28,31 @@ def h(i, j):
     i, j = symbols('i j')
     f = (M*i + N + O*(j + (nz*dz/2))**2)
     ff = f.subs([(i,i),(j,j)])
-    return f
+    return ff
 
 def dhdx(i, j):
     i, j = symbols('i j')
     f = (M*i + N + O*(j + (nz*dz/2))**2)
-    ff = f.subs([(i,i),(j,j)])
-    return diff(ff, i)
+    g = diff(f, i)
+    return g.subs([(i,i),(j,j)])
 
 def dhdz(i, j):
     i, j = symbols('i j')
     f = (M*i + N + O*(j + (nz*dz/2))**2)
-    ff = f.subs([(i,i),(j,j)])
-    return diff(ff, j)
+    g = diff(f, j)
+    return g.subs([(i,i),(j,j)])
 
 def dh3dx(i, j):
     i, j = symbols('i j')
     f = (M*i + N + O*(j + (nz*dz/2))**2)
-    ff = f.subs([(i,i),(j,j)])
-    return diff(ff**3, i)
+    g = diff(f**3, i)
+    return g.subs([(i,i),(j,j)])
 
 def dh3dz(i, j):
-    i, j = symbols('i j')
+    ii, j = symbols('i j')
     f = (M*i + N + O*(j + (nz*dz/2))**2)
-    ff = f.subs([(i,i),(j,j)])
-    return diff(ff**3, j)
+    g = diff(f**3, j)
+    return g.subs([(i,i),(j,j)])
 
 #init of fluid values and boundary conditions
 
