@@ -22,17 +22,17 @@ yint = 0.02*10**(-3)
 h = np.zeros([nx, nz])
 for xcount in range(1, nx - 1):
     for zcount in range(1, nz - 1):
-        h[xcount, zcount] = slope*xcount + yint
-#h[1:nx-1, 1] = slope*x + yint
+        h[xcount, zcount] = -slope*xcount + yint
+
 
 #iterations to do
-n = 1000
+n = 20000 
 
 def dhdx():
     return slope
 
 def dhdz():
-    return slope
+    return 0
 
 def solve(it):
     A, B, C, D, E = np.zeros([nx, nz]), np.zeros([nx, nz]), np.zeros([nx, nz]), np.zeros([nx, nz]), np.zeros([nx, nz])
@@ -59,16 +59,12 @@ def solve(it):
     
     return p_new
 
-def display():
-    pass
-
 def main():
     soln = solve(n)
     fig, ax = plt.subplots(subplot_kw = {"projection":"3d"})
 
     a, b = np.meshgrid(x, z)
     surf = ax.plot_surface(a, b, soln, cmap = cm.viridis, linewidth = 0, antialiased = False)
-    
     
 if __name__ == '__main__':
     main()
